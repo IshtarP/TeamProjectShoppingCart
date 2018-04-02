@@ -12,9 +12,6 @@
         <h1> Video Games </h1>
         
         <div id="box">
-            <form>
-                
-            </form>
             
         </div>
 

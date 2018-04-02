@@ -1,12 +1,18 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <title>Video Games</title>
+        <meta charset="utf-8"/>
+        <style>
+            @import url(css/styles.css);
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <!--<link rel="stylesheet" type="text/css" href="css/styles.css">-->
     </head>
     <body class="main">
-        <div class="homecontainer">
-            <h1>Welcome to BetterGamestahp</h1>
+         <h1> Video Games </h1>
+        <div class="box">
             <h3>Home</h3>
-            <hr width="60%"/>
+            <!--<hr width="60%"/>-->
             <div class="formDiv">
                 <form action="ConsolePage.php">
                     <input type="submit" value="Console">
