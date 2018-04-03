@@ -10,6 +10,7 @@
             <h1> Console </h1>
             <div class="box2">
                 <form >
+                    Product: <input type="text" name="product" /><br />
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
                         <option value="Name">Title</option>
@@ -40,12 +41,15 @@
                     
                     $sql = "SELECT * FROM Console WHERE 1";
                     
-                    if(isset($_GET['submit'])){
+                    if(isset($_GET['submit']))
+                    {
                         if(!empty($_GET['filter']))
                         {
                             $sql .= " ORDER BY " . $_GET['filter'];
                         }
-                        else {
+                        
+                        else 
+                        {
                             $sql .= " ORDER BY Name";
                         }
                         
@@ -54,10 +58,15 @@
                             $sql .= " " . $_GET['order'];
                         }
                     }
-                    else{
+                    else
+                    {
                         $sql .= " ORDER BY Name";
                     }
-                    
+                    if (!empty($_GET['product'])) 
+                    { //checks whether user has typed something in the "Product" text box
+                        $sql .=  " AND productName LIKE :productName";
+                        $namedParameters[":productName"] = "%" . $_GET['product'] . "%";
+                    }
                     
                     
                     //echo $sql;
