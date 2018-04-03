@@ -1,11 +1,14 @@
-html>
+<html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <style>
+            @import url(css/styles.css);
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     </head>
     <body class="main">
         <div class="container">
-            <h1>Better GameStahp</h1>
-            <div class="formDiv">
+            <h1> Console </h1>
+            <div class="box2">
                 <form >
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
@@ -13,10 +16,10 @@ html>
                         <option value="Genre">Genre</option>
                     </select>
                     
-                    Price:  From <input type="text" name="priceFrom"/>
-                    To   <input type="text" name="priceTo"/>
-                    <input type="radio" name="order" value="ASC">Asc
-                    <input type="radio" name="order" value="DESC">Desc
+                    <strong>Price:  From</strong> <input type="text" name="priceFrom"/>
+                    <strong>To</strong> <input type="text" name="priceTo"/>
+                    <input type="radio" name="order" value="ASC"><strong>Asc</strong>
+                    <input type="radio" name="order" value="DESC"><strong>Desc</strong>
                     <input type="submit" value="Search" name="submit">
                 </form>
                 
