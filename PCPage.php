@@ -72,27 +72,28 @@
                     echo "<table>";
                     echo "<tr>";
                     echo "<th>Image</th>";
-                    echo "<th>Title</th>";
-                    echo "<th>Genre</th>";
-                    echo "<th>Price</th>";
                     echo "</tr>";
                     
                     foreach($records as $record) 
                     {
                         echo "<tr>";
                         echo "<td> <img src='" . $record['pc_image'] . "' width='200' height='300' alt='" . $record['pc_title'] . "'/></td><br/>";
-                        echo "<td><button class='accordion'>". $record['pc_title'] ."</button>";
-                        echo "<div class='panel'>";
+                        echo "<td><button class='accordion' >". $record['pc_title']  . "</button>";
+                        echo "<div id='panel'>";
                         
                         echo "<h4>Summary:</h4>";
-                        echo "<p>";
-                        //echo $record['pc_description'];
+                        echo "<p id='description'>";
+                        echo $record['pc_description'];
+                        echo "</br >";
+                        echo "<h4>Genre:</h4>";
+                        echo $record['pc_genre'];
+                        echo "</br >";
+                        echo "<h4>Price:</h4>";
+                        echo $record['pc_price'];
                         echo "</p>";
                         
                         echo "</div>";
                         echo "</td>";
-                        echo "<td>". $record['pc_genre'] ."</td>";
-                        echo "<td>". $record['pc_price'] ."</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
