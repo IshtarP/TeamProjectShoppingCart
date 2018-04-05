@@ -1,4 +1,4 @@
-html>
+<html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
@@ -9,9 +9,9 @@ html>
                 <form >
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
-                        <option value="Name">Title</option>
-                        <option value="Genre">Genre</option>
-                        <option value="Price">Price</option>
+                        <option value="pc_title">Title</option>
+                        <option value="pc_genre">Genre</option>
+                        <option value="pc_price">Price</option>
                     </select>
                     
                     Price:  From <input type="text" name="priceFrom"/>
@@ -34,9 +34,9 @@ html>
                 <?php
                     include 'database.php';
                     
-                    $conn = getDatabaseConnection();
+                    $conn = getDatabaseConnection("heroku_34a8e5c8c0df63e");
                     
-                    $sql = "SELECT * FROM Console WHERE 1";
+                    $sql = "SELECT * FROM pc WHERE 1";
                     
                     if(isset($_GET['submit'])){
                         if(!empty($_GET['filter']))
@@ -44,7 +44,7 @@ html>
                             $sql .= " ORDER BY " . $_GET['filter'];
                         }
                         else {
-                            $sql .= " ORDER BY Name";
+                            $sql .= " ORDER BY pc_title";
                         }
                         
                         if(isset($_GET['order']))
@@ -53,7 +53,7 @@ html>
                         }
                     }
                     else{
-                        $sql .= " ORDER BY Name";
+                        $sql .= " ORDER BY pc_title";
                     }
                     
                     
@@ -65,35 +65,31 @@ html>
                     
                     echo "<table>";
                     echo "<tr>";
+                    echo "<th>Image</th>";
                     echo "<th>Title</th>";
                     echo "<th>Genre</th>";
-                    //echo "<th>Director</th>";
                     echo "<th>Price</th>";
                     echo "</tr>";
                     
                     foreach($records as $record) {
                         echo "<tr>";
-                        echo "<td><button class='accordion'>". $record["Name"] ."</button>";
+                        echo "<td> <img src='" . $record['pc_image'] . "' width='200' height='300' alt='" . $record['pc_title'] . "'/></td><br/>";
+                        echo "<td><button class='accordion'>". $record['pc_title'] ."</button>";
                         echo "<div class='panel'>";
                         
                         echo "<h4>Summary:</h4>";
                         echo "<p>";
-                        echo $record["Summary"];
+                        //echo $record['pc_description'];
                         echo "</p>";
                         
                         echo "</div>";
                         echo "</td>";
-                        echo "<td>". $record["Genre"] ."</td>";
-                        //echo "<td>". $record["Director"] ."</td>";
-                        echo "<td>". $record["Price"] ."</td>";
+                        echo "<td>". $record['pc_genre'] ."</td>";
+                        echo "<td>". $record['pc_price'] ."</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
                     
-                    // foreach($record as $rec)
-                    // {
-                    //     echo $rec['Name']."<br>";
-                    // }
                 ?>
             </div>
         </div>

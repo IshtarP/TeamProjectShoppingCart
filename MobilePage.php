@@ -1,4 +1,4 @@
-html>
+<html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
@@ -9,9 +9,8 @@ html>
                 <form >
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
-                        <option value="Name">Title</option>
-                        <option value="Genre">Genre</option>
-                        <option value="Price">Price</option>
+                        <option value="mobile_title">Title</option>
+                        <option value="mobile_genre">Genre</option>
                     </select>
                     
                     Price:  From <input type="text" name="priceFrom"/>
@@ -34,9 +33,9 @@ html>
                 <?php
                     include 'database.php';
                     
-                    $conn = getDatabaseConnection();
+                    $conn = getDatabaseConnection("heroku_34a8e5c8c0df63e");
                     
-                    $sql = "SELECT * FROM Console WHERE 1";
+                    $sql = "SELECT * FROM mobile WHERE 1";
                     
                     if(isset($_GET['submit'])){
                         if(!empty($_GET['filter']))
@@ -44,7 +43,7 @@ html>
                             $sql .= " ORDER BY " . $_GET['filter'];
                         }
                         else {
-                            $sql .= " ORDER BY Name";
+                            $sql .= " ORDER BY mobile_title";
                         }
                         
                         if(isset($_GET['order']))
@@ -53,7 +52,7 @@ html>
                         }
                     }
                     else{
-                        $sql .= " ORDER BY Name";
+                        $sql .= " ORDER BY mobile_title";
                     }
                     
                     
@@ -65,6 +64,7 @@ html>
                     
                     echo "<table>";
                     echo "<tr>";
+                    echo "<th>Image</th>";
                     echo "<th>Title</th>";
                     echo "<th>Genre</th>";
                     //echo "<th>Director</th>";
@@ -73,27 +73,23 @@ html>
                     
                     foreach($records as $record) {
                         echo "<tr>";
-                        echo "<td><button class='accordion'>". $record["Name"] ."</button>";
+                        echo "<td> <img src='" . $record['mobile_image'] . "' width='300' height='200' alt='" . $record['mobile_title'] . "'/></td><br/>";
+                        echo "<td><button class='accordion'>". $record['mobile_title'] ."</button>";
                         echo "<div class='panel'>";
                         
                         echo "<h4>Summary:</h4>";
                         echo "<p>";
-                        echo $record["Summary"];
+                        //echo $record['mobile_description'];
                         echo "</p>";
                         
                         echo "</div>";
                         echo "</td>";
-                        echo "<td>". $record["Genre"] ."</td>";
-                        //echo "<td>". $record["Director"] ."</td>";
-                        echo "<td>". $record["Price"] ."</td>";
+                        echo "<td>". $record['mobile_genre'] ."</td>";
+                        echo "<td>". $record['mobile_price'] ."</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
-                    
-                    // foreach($record as $rec)
-                    // {
-                    //     echo $rec['Name']."<br>";
-                    // }
+                
                 ?>
             </div>
         </div>

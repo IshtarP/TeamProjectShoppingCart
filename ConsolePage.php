@@ -13,8 +13,9 @@
                     Product: <input type="text" name="product" /><br />
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
-                        <option value="Name">Title</option>
-                        <option value="Genre">Genre</option>
+                        <option value="console_title">Title</option>
+                        <option value="console_genre">Genre</option>
+                        <option value="console_price">Price</option>
                     </select>
                     
                     <strong>Price:  From</strong> <input type="text" name="priceFrom"/>
@@ -37,9 +38,9 @@
                 <?php
                     include 'database.php';
                     
-                    $conn = getDatabaseConnection();
+                    $conn = getDatabaseConnection("heroku_34a8e5c8c0df63e");
                     
-                    $sql = "SELECT * FROM Console WHERE 1";
+                    $sql = "SELECT * FROM console WHERE 1";
                     
                     if(isset($_GET['submit']))
                     {
@@ -50,7 +51,7 @@
                         
                         else 
                         {
-                            $sql .= " ORDER BY Name";
+                            $sql .= " ORDER BY console_title";
                         }
                         
                         if(isset($_GET['order']))
@@ -60,51 +61,48 @@
                     }
                     else
                     {
-                        $sql .= " ORDER BY Name";
+                        $sql .= " ORDER BY console_title";
                     }
                     if (!empty($_GET['product'])) 
                     { //checks whether user has typed something in the "Product" text box
-                        $sql .=  " AND productName LIKE :productName";
+                        $sql .=  " AND console_title LIKE :productName";
                         $namedParameters[":productName"] = "%" . $_GET['product'] . "%";
                     }
                     
                     
                     //echo $sql;
                     $stmt = $conn->prepare($sql);
-                    $stmt->execute();
+                    $stmt->execute($namedParameters);
                     $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     echo "<table>";
                     echo "<tr>";
+                    echo "<th>Image</th>";
                     echo "<th>Title</th>";
                     echo "<th>Genre</th>";
-                    //echo "<th>Director</th>";
                     echo "<th>Price</th>";
                     echo "</tr>";
                     
                     foreach($records as $record) {
                         echo "<tr>";
-                        echo "<td><button class='accordion'>". $record["Name"] ."</button>";
+                        echo "<td> <img src='" . $record['console_image'] . "' width='200' alt='" . $record['console_title'] . "'/></td><br/>";
+                        echo "<td><button class='accordion'>". $record['console_title'] ."</button>";
                         echo "<div class='panel'>";
                         
                         echo "<h4>Summary:</h4>";
                         echo "<p>";
-                        echo $record["Summary"];
+                        //echo $record['console_description'];
                         echo "</p>";
                         
                         echo "</div>";
                         echo "</td>";
-                        echo "<td>". $record["Genre"] ."</td>";
-                        //echo "<td>". $record["Director"] ."</td>";
-                        echo "<td>". $record["Price"] ."</td>";
+                        echo "<td>". $record['console_genre'] ."</td>";
+                       
+                        echo "<td>". $record['console_price'] ."</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
-                    
-                    // foreach($record as $rec)
-                    // {
-                    //     echo $rec['Name']."<br>";
-                    // }
+                
                 ?>
             </div>
         </div>
