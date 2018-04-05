@@ -6,17 +6,23 @@
         <div class="container">
             <h1>Better GameStahp</h1>
             <div class="formDiv">
+                <h2>Search by:</h2>
                 <form >
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
                         <option value="mobile_title">Title</option>
                         <option value="mobile_genre">Genre</option>
                     </select>
+                    <br/><br/>
                     
                     Price:  From <input type="text" name="priceFrom"/>
                     To   <input type="text" name="priceTo"/>
+                    <br/><br/>
+                    
                     <input type="radio" name="order" value="ASC">Asc
                     <input type="radio" name="order" value="DESC">Desc
+                    <br/><br/>
+                    
                     <input type="submit" value="Search" name="submit">
                 </form>
                 

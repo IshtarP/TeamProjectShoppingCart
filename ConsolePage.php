@@ -9,19 +9,26 @@
         <div class="container">
             <h1> Console </h1>
             <div class="box2">
+                <h3>Search by:</h3>
                 <form >
-                    Product: <input type="text" name="product" /><br />
+                    Title: <input type="text" name="product" /><br/><br/>
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
                         <option value="console_title">Title</option>
                         <option value="console_genre">Genre</option>
                         <option value="console_price">Price</option>
+                        <option value="console_rating">Rating</option>
                     </select>
+                    <br/><br/>
                     
                     <strong>Price:  From</strong> <input type="text" name="priceFrom"/>
                     <strong>To</strong> <input type="text" name="priceTo"/>
+                    <br/><br/>
+                    
                     <input type="radio" name="order" value="ASC"><strong>Asc</strong>
                     <input type="radio" name="order" value="DESC"><strong>Desc</strong>
+                    <br/><br/>
+                    
                     <input type="submit" value="Search" name="submit">
                 </form>
                 
@@ -44,6 +51,21 @@
                     
                     if(isset($_GET['submit']))
                     {
+                        if(!empty($_GET['product'])) {
+                            
+                            $sql .= " AND console_title LIKE '%" . $_GET['product'] . "%'";
+                        }
+                        
+                        if(!empty($_GET['priceFrom'])) {
+                            
+                            $sql .= " AND console_price >= " . $_GET['priceFrom'];
+                        }
+                        
+                        if(!empty($_GET['priceTo'])) {
+                            
+                            $sql .= " AND console_price <= " . $_GET['priceTo'];
+                        }
+                        
                         if(!empty($_GET['filter']))
                         {
                             $sql .= " ORDER BY " . $_GET['filter'];
@@ -79,6 +101,7 @@
                     echo "<tr>";
                     echo "<th>Image</th>";
                     echo "<th>Title</th>";
+                    echo "<th>Rating</th>";
                     echo "<th>Genre</th>";
                     echo "<th>Price</th>";
                     echo "</tr>";
@@ -96,6 +119,7 @@
                         
                         echo "</div>";
                         echo "</td>";
+                        echo "<td>" . $record['console_rating'] . "</td>";
                         echo "<td>". $record['console_genre'] ."</td>";
                        
                         echo "<td>". $record['console_price'] ."</td>";
