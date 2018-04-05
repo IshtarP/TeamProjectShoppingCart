@@ -80,28 +80,28 @@
                     echo "<table>";
                     echo "<tr>";
                     echo "<th>Image</th>";
-                    echo "<th>Title</th>";
-                    echo "<th>Rating</th>";
-                    echo "<th>Genre</th>";
-                    echo "<th>Price</th>";
                     echo "</tr>";
                     
-                    foreach($records as $record) {
+                    foreach($records as $record) 
+                    {
                         echo "<tr>";
-                        echo "<td> <img src='" . $record['mobile_image'] . "' width='300' height='200' alt='" . $record['mobile_title'] . "'/></td><br/>";
-                        echo "<td><button class='accordion'>". $record['mobile_title'] ."</button>";
-                        echo "<div class='panel'>";
+                        echo "<td> <img src='" . $record['mobile_image'] . "' width='300' height='300' alt='" . $record['mobile_title'] . "'/></td><br/>";
+                        echo "<td><button class='accordion' >". $record['mobile_title']  . "</button>";
+                        echo "<div id='panel'>";
                         
                         echo "<h4>Summary:</h4>";
-                        echo "<p>";
-                        //echo $record['mobile_description'];
+                        echo "<p id='description'>";
+                        echo $record['mobile_description'];
+                        echo "</br >";
+                        echo "<h4>Genre:</h4>";
+                        echo $record['mobile_genre'];
+                        echo "</br >";
+                        echo "<h4>Price:</h4>";
+                        echo $record['mobile_price'];
                         echo "</p>";
                         
                         echo "</div>";
                         echo "</td>";
-                        echo "<td>" . $record['mobile_rating'] . "</td>";
-                        echo "<td>". $record['mobile_genre'] ."</td>";
-                        echo "<td>". $record['mobile_price'] ."</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
