@@ -12,12 +12,18 @@
                         <option value="pc_title">Title</option>
                         <option value="pc_genre">Genre</option>
                         <option value="pc_price">Price</option>
+                        <option value="pc_rating">Rating</option>
                     </select>
+                    <br/><br/>
                     
                     Price:  From <input type="text" name="priceFrom"/>
                     To   <input type="text" name="priceTo"/>
+                    <br/><br/>
+                    
                     <input type="radio" name="order" value="ASC">Asc
                     <input type="radio" name="order" value="DESC">Desc
+                    <br/><br/>
+                    
                     <input type="submit" value="Search" name="submit">
                 </form>
                 

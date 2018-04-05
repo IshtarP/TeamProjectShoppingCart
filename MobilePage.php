@@ -1,22 +1,26 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+       
     </head>
     <body class="main">
+        
         <div class="container">
             <h1>Better GameStahp</h1>
             <div class="formDiv">
                 <h2>Search by:</h2>
                 <form >
+                    
+                    Title:
+                    <input type="text" name="title" placeholder="Enter game title here"/>
+                    <br/><br/>
+                    
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
                         <option value="mobile_title">Title</option>
                         <option value="mobile_genre">Genre</option>
+                        <option value="mobile_rating">Rating</option>
                     </select>
-                    <br/><br/>
-                    
-                    Price:  From <input type="text" name="priceFrom"/>
-                    To   <input type="text" name="priceTo"/>
                     <br/><br/>
                     
                     <input type="radio" name="order" value="ASC">Asc
@@ -44,6 +48,11 @@
                     $sql = "SELECT * FROM mobile WHERE 1";
                     
                     if(isset($_GET['submit'])){
+                        
+                        if(!empty($_GET['title'])) {
+                            
+                            $sql .= " AND mobile_title LIKE '%" . $_GET['title'] . "%'";
+                        }
                         if(!empty($_GET['filter']))
                         {
                             $sql .= " ORDER BY " . $_GET['filter'];
@@ -72,8 +81,8 @@
                     echo "<tr>";
                     echo "<th>Image</th>";
                     echo "<th>Title</th>";
+                    echo "<th>Rating</th>";
                     echo "<th>Genre</th>";
-                    //echo "<th>Director</th>";
                     echo "<th>Price</th>";
                     echo "</tr>";
                     
@@ -90,6 +99,7 @@
                         
                         echo "</div>";
                         echo "</td>";
+                        echo "<td>" . $record['mobile_rating'] . "</td>";
                         echo "<td>". $record['mobile_genre'] ."</td>";
                         echo "<td>". $record['mobile_price'] ."</td>";
                         echo "</tr>";
