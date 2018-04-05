@@ -8,7 +8,7 @@
     <body class="main">
         <div class="container">
             <h1> Console </h1>
-            <div class="box2">
+            <div class="formDiv">
                 <h3>Search by:</h3>
                 <form >
                     Title: <input type="text" name="product" /><br/><br/>

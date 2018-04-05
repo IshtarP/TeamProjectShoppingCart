@@ -77,7 +77,8 @@
                     echo "<th>Price</th>";
                     echo "</tr>";
                     
-                    foreach($records as $record) {
+                    foreach($records as $record) 
+                    {
                         echo "<tr>";
                         echo "<td> <img src='" . $record['pc_image'] . "' width='200' height='300' alt='" . $record['pc_title'] . "'/></td><br/>";
                         echo "<td><button class='accordion'>". $record['pc_title'] ."</button>";
