@@ -35,3 +35,11 @@ body {
     
     color:white;
 }
+#description
+{
+    width: 60%;
+}
+#panel
+{
+    background-color: orange;
+}

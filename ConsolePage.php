@@ -51,17 +51,20 @@
                     
                     if(isset($_GET['submit']))
                     {
-                        if(!empty($_GET['product'])) {
+                        if(!empty($_GET['product'])) 
+                        {
                             
                             $sql .= " AND console_title LIKE '%" . $_GET['product'] . "%'";
                         }
                         
-                        if(!empty($_GET['priceFrom'])) {
+                        if(!empty($_GET['priceFrom'])) 
+                        {
                             
                             $sql .= " AND console_price >= " . $_GET['priceFrom'];
                         }
                         
-                        if(!empty($_GET['priceTo'])) {
+                        if(!empty($_GET['priceTo'])) 
+                        {
                             
                             $sql .= " AND console_price <= " . $_GET['priceTo'];
                         }
@@ -100,33 +103,31 @@
                     echo "<table>";
                     echo "<tr>";
                     echo "<th>Image</th>";
-                    echo "<th>Title</th>";
-                    echo "<th>Rating</th>";
-                    echo "<th>Genre</th>";
-                    echo "<th>Price</th>";
                     echo "</tr>";
                     
-                    foreach($records as $record) {
+                    foreach($records as $record) 
+                    {
                         echo "<tr>";
                         echo "<td> <img src='" . $record['console_image'] . "' width='200' height='300' alt='" . $record['console_title'] . "'/></td><br/>";
-                        echo "<td><button class='accordion'>". $record['console_title'] ."</button>";
-                        echo "<div class='panel'>";
+                        echo "<td><button class='accordion' >". $record['console_title']  . "</button>";
+                        echo "<div id='panel'>";
                         
                         echo "<h4>Summary:</h4>";
-                        echo "<p>";
-                        //echo $record['console_description'];
+                        echo "<p id='description'>";
+                        echo $record['console_description'];
+                        echo "</br >";
+                        echo "<h4>Genre:</h4>";
+                        echo $record['console_genre'];
+                        echo "</br >";
+                        echo "<h4>Price:</h4>";
+                        echo $record['console_price'];
                         echo "</p>";
                         
                         echo "</div>";
                         echo "</td>";
-                        echo "<td>" . $record['console_rating'] . "</td>";
-                        echo "<td>". $record['console_genre'] ."</td>";
-                       
-                        echo "<td>". $record['console_price'] ."</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
-                
                 ?>
             </div>
         </div>
@@ -134,13 +135,18 @@
     var acc = document.getElementsByClassName("accordion");
     var i;
     
-    for (i = 0; i < acc.length; i++) {
-        acc[i].onclick = function(){
+    for (i = 0; i < acc.length; i++) 
+    {
+        acc[i].onclick = function()
+        {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
+            if (panel.style.display === "block") 
+            {
                 panel.style.display = "none";
-            } else {
+            }
+            else 
+            {
                 panel.style.display = "block";
             }
         }
