@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <style>
@@ -11,7 +12,7 @@
             <div class="formDiv">
                 <h3>Search by:</h3>
                 <form >
-                    Title: <input type="text" name="product" /><br/><br/>
+                    Title: <input type="text" name="product" placeholder="Enter game title here" /><br/><br/>
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
                         <option value="console_title">Title</option>

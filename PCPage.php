@@ -7,6 +7,7 @@
             <h1>PC</h1>
             <div class="formDiv">
                 <form >
+                    Title: <input type="text" name="title" placeholder="Enter game title here" /><br/><br/>
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
                         <option value="pc_title">Title</option>
@@ -45,10 +46,27 @@
                     $sql = "SELECT * FROM pc WHERE 1";
                     
                     if(isset($_GET['submit'])){
+                        
+                        if(!empty($_GET['title'])) {
+                            
+                            $sql .= " AND pc_title LIKE '%" . $_GET['title'] . "%'";
+                        }
+                        
+                        if(!empty($_GET['priceFrom'])) {
+                            
+                            $sql .= " AND pc_price >= " . $_GET['priceFrom'];
+                        }
+                        
+                        if(!empty($_GET['priceTo'])) {
+                            
+                            $sql .= " AND pc_price <= " . $_GET['priceTo'];
+                        }
+                        
                         if(!empty($_GET['filter']))
                         {
                             $sql .= " ORDER BY " . $_GET['filter'];
                         }
+                        
                         else {
                             $sql .= " ORDER BY pc_title";
                         }
@@ -119,3 +137,4 @@
     </script>
     </body>
 </html>
+
