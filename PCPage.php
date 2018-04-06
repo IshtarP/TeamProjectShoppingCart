@@ -2,9 +2,9 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
-    <body class="main">
+    <body class="pc">
         <div class="container">
-            <h1>Better GameStahp</h1>
+            <h1>PC</h1>
             <div class="formDiv">
                 <form >
                     <select id="dropdown" name="filter">
@@ -69,7 +69,7 @@
                     $stmt->execute();
                     $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    echo "<table>";
+                    echo "<table id='tb2'>";
                     echo "<tr>";
                     echo "<th>Image</th>";
                     echo "</tr>";

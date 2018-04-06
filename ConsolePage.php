@@ -100,6 +100,7 @@
                     $stmt->execute($namedParameters);
                     $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
+                    echo "<div id='tb'>";
                     echo "<table>";
                     echo "<tr>";
                     echo "<th>Image</th>";

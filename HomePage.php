@@ -8,7 +8,9 @@
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     </head>
     <body class="home">
-         <h1><strong> Video Games </h1></strong>
+        
+         <h1><strong><img src= "img/controller3.png"> GameStahp <img src= "img/controller3.png"></h1></strong>
+         
         <div class="box">
             <div class="formDiv">
             <h3>Home</h3>
