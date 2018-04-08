@@ -22,6 +22,9 @@
                     </select>
                     <br/><br/>
                     
+                    Console Type: <input type="text" name="platform" placeholder="Enter console platform" />
+                    <br/><br/>
+                    
                     <strong>Price:  From</strong> <input type="text" name="priceFrom"/>
                     <strong>To</strong> <input type="text" name="priceTo"/>
                     <br/><br/>
@@ -58,6 +61,10 @@
                             $sql .= " AND console_title LIKE '%" . $_GET['product'] . "%'";
                         }
                         
+                        if(!empty($_GET['platform'])) {
+                            
+                            $sql .= " AND console_platform LIKE '%" . $_GET['platform'] . "%'";
+                        }
                         if(!empty($_GET['priceFrom'])) 
                         {
                             
@@ -74,7 +81,6 @@
                         {
                             $sql .= " ORDER BY " . $_GET['filter'];
                         }
-                        
                         else 
                         {
                             $sql .= " ORDER BY console_title";
