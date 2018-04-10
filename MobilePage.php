@@ -87,7 +87,7 @@
                         echo "<tr>";
                         echo "<td> <img src='" . $record['mobile_image'] . "' width='300' height='300' alt='" . $record['mobile_title'] . "'/></td><br/>";
                         echo "<td><button class='accordion' >". $record['mobile_title']  . "</button>";
-                        echo "<div id='panel'>";
+                        echo "<div class='panel'>";
                         
                         echo "<h4>Summary:</h4>";
                         echo "<p id='description'>";
