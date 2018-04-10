@@ -92,7 +92,7 @@
                     $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     echo "<div id='tb3'>";
-                    echo "<table id='fixed'>";
+                    echo "<table>";
                     echo "<tr>";
                     echo "<th>Image</th>";
                     echo "</tr>";

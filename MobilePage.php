@@ -80,7 +80,9 @@
                     $stmt->execute();
                     $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    echo "<table id='play'>";
+                    
+                    echo "<div id='play'>";
+                    echo "<table>";
                     echo "<tr>";
                     echo "<th>Image</th>";
                     echo "</tr>";
