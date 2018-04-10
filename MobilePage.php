@@ -86,10 +86,11 @@
                     
                     if(isset($_GET['submit'])){
                         
-                        if(!empty($_GET['title'])) {
-                            
-                            $sql .= " AND mobile_title LIKE '%" . $_GET['title'] . "%'";
-                        }
+                        if (!empty($_GET['title'])) 
+                    { //checks whether user has typed something in the "Product" text box
+                        $sql .=  " AND mobile_title LIKE :productName";
+                        $namedParameters[":productName"] = "%" . $_GET['title'] . "%";
+                    }
                         
                         if(!empty($_GET['platform'])) {
                             

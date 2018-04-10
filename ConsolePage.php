@@ -85,36 +85,23 @@
                 
                     $sql = "SELECT * FROM console WHERE 1";
                     
-                    if(isset($_GET['submit']))
-                    {
-                        if(!empty($_GET['product'])) 
-                        {
-                            
-                            $sql .= " AND console_title LIKE '%" . $_GET['product'] . "%'";
-                        }
+                    if(isset($_GET['submit'])){
+                        
+                        if (!empty($_GET['product'])) 
+                    { //checks whether user has typed something in the "Product" text box
+                        $sql .=  " AND console_title LIKE :productName";
+                        $namedParameters[":productName"] = "%" . $_GET['product'] . "%";
+                    }
                         
                         if(!empty($_GET['platform'])) {
                             
                             $sql .= " AND console_platform LIKE '%" . $_GET['platform'] . "%'";
                         }
-                        if(!empty($_GET['priceFrom'])) 
-                        {
-                            
-                            $sql .= " AND console_price >= " . $_GET['priceFrom'];
-                        }
-                        
-                        if(!empty($_GET['priceTo'])) 
-                        {
-                            
-                            $sql .= " AND console_price <= " . $_GET['priceTo'];
-                        }
-                        
                         if(!empty($_GET['filter']))
                         {
                             $sql .= " ORDER BY " . $_GET['filter'];
                         }
-                        else 
-                        {
+                        if(empty($_GET['filter'])) {
                             $sql .= " ORDER BY console_title";
                         }
                         
@@ -123,16 +110,10 @@
                             $sql .= " " . $_GET['order'];
                         }
                     }
-                    else
-                    {
+                    else{
                         $sql .= " ORDER BY console_title";
                     }
-                    if (!empty($_GET['product'])) 
-                    { //checks whether user has typed something in the "Product" text box
-                        $sql .=  " AND console_title LIKE :productName";
-                        $namedParameters[":productName"] = "%" . $_GET['product'] . "%";
-                    }
-                   
+                    
                     echo "<div id='tb'>";
                     echo "<table>";
                     echo "<tr>";

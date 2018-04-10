@@ -24,10 +24,11 @@
         }
     }
     
-    if(isset($_GET['emptyCart'])) {
-        
-       unset($_SESSION['cart']);
-    }
+    if(isset($_GET['emptyCart'])) 
+        {
+        unset($_SESSION['cart']);
+        }
+   
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +42,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <title>Shopping Cart</title>
     </head>
+    
     <body>
         <div class='container'>
             <div class='text-center'>
@@ -60,6 +62,7 @@
                     </div>
                 </nav>
                 <br /> <br /> <br />
+                
                 <h2>Shopping Cart</h2>
                 <form method="get">
                     <input type="submit" name="emptyCart" value="Empty Cart"/>
