@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Video Games</title>
+        <title>GameStahp</title>
         <meta charset="utf-8"/>
         <style>
             @import url(css/styles.css);
@@ -8,11 +8,9 @@
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     </head>
     <body class="home">
-        
          <h1><strong><img src= "img/controller3.png"> GameStahp <img src= "img/controller3.png"></h1></strong>
-         
         <div class="box">
-            <div class="formDiv">
+            <div class="form">
             <h3>Home</h3>
             <!--<hr width="60%"/>-->
             

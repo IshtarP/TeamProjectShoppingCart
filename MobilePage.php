@@ -1,12 +1,15 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <style>
+            @import url(css/styles.css);
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
        
     </head>
-    <body class="main">
+    <body class="mobileStyle">
         
         <div class="container">
-            <h1>Better GameStahp</h1>
+            <h1>Mobile</h1>
             <div class="formDiv">
                 <h2>Search by:</h2>
                 <form >
@@ -77,7 +80,7 @@
                     $stmt->execute();
                     $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    echo "<table>";
+                    echo "<table id='play'>";
                     echo "<tr>";
                     echo "<th>Image</th>";
                     echo "</tr>";
@@ -85,7 +88,7 @@
                     foreach($records as $record) 
                     {
                         echo "<tr>";
-                        echo "<td> <img src='" . $record['mobile_image'] . "' width='300' height='300' alt='" . $record['mobile_title'] . "'/></td><br/>";
+                        echo "<td> <img src='" . $record['mobile_image'] . "' width='300' height='300' alt='" . $record['mobile_title'] . "'/></td>";
                         echo "<td><button class='accordion' >". $record['mobile_title']  . "</button>";
                         echo "<div class='panel'>";
                         

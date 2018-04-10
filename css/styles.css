@@ -16,14 +16,13 @@ h3 {
 }
 
 
-.formDiv {
-    text-align: center;
-    color:white;
-}
-body {
+
+.console, .pc , .mobileStyle{
     background: url(../img/videoGame1.png) no-repeat center center fixed;
     background-size: cover;
+   
 }
+
 
 
 .box2 {
@@ -44,16 +43,32 @@ h4 {
 table {
     color: white;
 }
+#ps4 {
+    float: center;
+}
 
 #tb {
     width: 1000px;
 	margin: 0px auto;
-	border-radius: 30px;
-	padding: 0px;
+	border-radius: 15px;
+	/*padding: 0px;*/
 	border-style: solid;
 	border-width: 10px;
 	background: url(../img/cracked.png) no-repeat center center fixed;
 	background-size: cover;
+	
+}
+
+
+.formDiv {
+    text-align: center;
+    color:white;
+    width:500px;
+    background-color: maroon;
+    margin: 0px auto;
+}
+.form {
+    text-align: center;
 }
 
 th {
@@ -65,30 +80,40 @@ th {
 /* Style for the PC page */
 
 .pc {
-    background-image: url("../img/csgo.png");
+   
+   background-color: dimgray;
+  	background-size: cover;
+   
 }
 
-#tb2 {
-    width: 1500px;
+#tb3 {
+    width: 1000px;
 	margin: 0px auto;
-	/*border-radius: 30px;*/
+	border-radius: 15px;
 	padding: 0px;
-/*	border-style: solid;*/
-	/*border-width: 10px;*/
-	border-color: black;
-  /*	background: url(../img/brick2.png) no-repeat center center fixed; */
-	background-size: cover;
+	border-style: solid;
+	border-width: 10px;
+	/*border-color: black;*/
+  	background: url(../img/brick2.png) no-repeat center center fixed; 
+
 }
+
+/* Try to fix the code */
+#fixed {
+    padding: 0px;
+}
+
+/* Part of the main page*/
 #controller {
     background: url("../img/controller3.png");
     width: 100px;
     height: 65px;
     float:fixed;
 }
-
-.panel 
-{
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
+#play {
+    width:1000px;
+    margin: 0px auto;
+    background: url("../img/black.png") no-repeat center center fixed;
 }
+
+

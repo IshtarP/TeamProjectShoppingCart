@@ -1,11 +1,15 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+       <style>
+           @import url("css/styles.css");
+       </style>
+         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     </head>
     <body class="pc">
         <div class="container">
             <h1>PC</h1>
             <div class="formDiv">
+                <h3>Search by:</h3>
                 <form >
                     Title: <input type="text" name="title" placeholder="Enter game title here" /><br/><br/>
                     <select id="dropdown" name="filter">
@@ -15,7 +19,7 @@
                         <option value="pc_price">Price</option>
                         <option value="pc_rating">Rating</option>
                     </select>
-                    <br/><br/>
+                    <br><br/>
                     
                     Price:  From <input type="text" name="priceFrom"/>
                     To   <input type="text" name="priceTo"/>
@@ -87,7 +91,8 @@
                     $stmt->execute();
                     $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    echo "<table id='tb2'>";
+                    echo "<div id='tb3'>";
+                    echo "<table id='fixed'>";
                     echo "<tr>";
                     echo "<th>Image</th>";
                     echo "</tr>";
@@ -95,7 +100,7 @@
                     foreach($records as $record) 
                     {
                         echo "<tr>";
-                        echo "<td> <img src='" . $record['pc_image'] . "' width='200' height='300' alt='" . $record['pc_title'] . "'/></td><br/>";
+                        echo "<td> <img src='" . $record['pc_image'] . "' width='200' height='300' alt='" . $record['pc_title'] . "'/></td>";
                         echo "<td><button class='accordion' >". $record['pc_title']  . "</button>";
                         echo "<div class='panel'>";
                         

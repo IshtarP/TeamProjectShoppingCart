@@ -6,9 +6,11 @@
         </style>
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     </head>
-    <body class="main">
+    <body class="console">
         <div class="container">
             <h1> Console </h1>
+            <br>
+           
             <div class="formDiv">
                 <h3>Search by:</h3>
                 <form >
@@ -116,7 +118,7 @@
                     foreach($records as $record) 
                     {
                         echo "<tr>";
-                        echo "<td> <img src='" . $record['console_image'] . "' width='200' height='300' alt='" . $record['console_title'] . "'/></td><br/>";
+                        echo "<td> <img src='" . $record['console_image'] . "' width='200' height='300' alt='" . $record['console_title'] . "'/></td>";
                         echo "<td><button class='accordion' >". $record['console_title']  . "</button>";
                         echo "<div class='panel'>";
                         
