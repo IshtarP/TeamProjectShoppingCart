@@ -86,3 +86,9 @@ th {
     float:fixed;
 }
 
+.panel 
+{
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+}
