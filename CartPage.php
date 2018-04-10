@@ -23,6 +23,11 @@
             }
         }
     }
+    
+    if(isset($_GET['emptyCart'])) {
+        
+       unset($_SESSION['cart']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +61,9 @@
                 </nav>
                 <br /> <br /> <br />
                 <h2>Shopping Cart</h2>
+                <form method="get">
+                    <input type="submit" name="emptyCart" value="Empty Cart"/>
+                </form>
                 <!-- Cart Items -->
                 <?php
                     
