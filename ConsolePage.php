@@ -127,16 +127,26 @@
                         echo "<h4>Genre:</h4>";
                         echo $record['console_genre'];
                         echo "</br >";
+                        echo "<h4>Rating:</h4>";
+                        echo $record['console_rating'];
+                        echo "</div>";
+                        
                         echo "<h4>Price:</h4>";
                         echo $record['console_price'];
-                        echo "</p>";
+                        echo "<h4>Platform(s):</h4>";
+                        echo $record['console_platform'];
                         
-                        echo "</div>";
+                        echo "</p>";
+                        echo "<form>";
+                        
+                            echo "<input type='submit' value='Add to Cart'/>";
+                        echo "</form>";
                         echo "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
                 ?>
+                
             </div>
         </div>
     <script>
