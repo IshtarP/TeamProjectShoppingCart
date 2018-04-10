@@ -1,3 +1,37 @@
+<?php
+    
+    session_start();
+    
+    include 'functions.php';
+    include 'database.php';
+    
+    if(isset($_POST['itemName'])) {
+        
+        $newItem = array();
+        $newItem['name'] = $_POST['itemName'];
+        $newItem['id'] = $_POST['itemId'];
+        $newItem['price'] = $_POST['itemPrice'];
+        $newItem['image'] = $_POST['itemImage'];
+        
+        foreach($_SESSION['cart'] as &$item) {
+            
+            if($newItem['id'] == $item['id']) {
+                
+                $item['quantity'] += 1;
+                $found = true;
+            }
+        }
+        
+        if($found != true) {
+            
+            $newItem['quantity'] = 1;
+            array_push($_SESSION['cart'], $newItem);
+        }
+        
+    }
+
+
+?>
 <html>
     <head>
         <style>
@@ -26,6 +60,9 @@
                     </select>
                     <br/><br/>
                     
+                    Mobile Platform: <input type="text" name="platform" placeholder="Enter mobile platform" />
+                    </br></br>
+                    
                     <input type="radio" name="order" value="ASC">Asc
                     <input type="radio" name="order" value="DESC">Desc
                     <br/><br/>
@@ -37,16 +74,13 @@
                     <input type="submit" name="cart" value="Shopping Cart">
                 </form>
                 
-                <form action="HomePage.php">
+                <form action="index.php">
                     <input type="submit" value="Back to home">
                 </form>
             </div>
             
             <div class="textDiv">
                 <?php
-                    include 'database.php';
-                    
-                    $conn = getDatabaseConnection("heroku_34a8e5c8c0df63e");
                     
                     $sql = "SELECT * FROM mobile WHERE 1";
                     
@@ -55,6 +89,11 @@
                         if(!empty($_GET['title'])) {
                             
                             $sql .= " AND mobile_title LIKE '%" . $_GET['title'] . "%'";
+                        }
+                        
+                        if(!empty($_GET['platform'])) {
+                            
+                            $sql .= " AND mobile_platform LIKE '%" . $_GET['platform'] . "%'";
                         }
                         if(!empty($_GET['filter']))
                         {
@@ -74,41 +113,14 @@
                     }
                     
                     
-                    
-                    //echo $sql;
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute();
-                    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    
-                    echo "<div id='play'>";
-                    echo "<table>";
+                    echo "<table id='play'>";
                     echo "<tr>";
-                    echo "<th>Image</th>";
+                    
+                     $items = getProducts("mobile", $sql);
+                    displayResults("mobile");
                     echo "</tr>";
                     
-                    foreach($records as $record) 
-                    {
-                        echo "<tr>";
-                        echo "<td> <img src='" . $record['mobile_image'] . "' width='300' height='300' alt='" . $record['mobile_title'] . "'/></td>";
-                        echo "<td><button class='accordion' >". $record['mobile_title']  . "</button>";
-                        echo "<div class='panel'>";
-                        
-                        echo "<h4>Summary:</h4>";
-                        echo "<p id='description'>";
-                        echo $record['mobile_description'];
-                        echo "</br >";
-                        echo "<h4>Genre:</h4>";
-                        echo $record['mobile_genre'];
-                        echo "</br >";
-                        echo "<h4>Price:</h4>";
-                        echo $record['mobile_price'];
-                        echo "</p>";
-                        
-                        echo "</div>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
+                    
                     echo "</table>";
                 
                 ?>

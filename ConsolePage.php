@@ -1,4 +1,37 @@
+<?php
+    
+    session_start();
+    
+    include 'functions.php';
+    include 'database.php';
+    
+    if(isset($_POST['itemName'])) {
+        
+        $newItem = array();
+        $newItem['name'] = $_POST['itemName'];
+        $newItem['id'] = $_POST['itemId'];
+        $newItem['price'] = $_POST['itemPrice'];
+        $newItem['image'] = $_POST['itemImage'];
+        
+        foreach($_SESSION['cart'] as &$item) {
+            
+            if($newItem['id'] == $item['id']) {
+                
+                $item['quantity'] += 1;
+                $found = true;
+            }
+        }
+        
+        if($found != true) {
+            
+            $newItem['quantity'] = 1;
+            array_push($_SESSION['cart'], $newItem);
+        }
+        
+    }
 
+
+?>
 <html>
     <head>
         <style>
@@ -38,21 +71,18 @@
                     <input type="submit" value="Search" name="submit">
                 </form>
                 
-                <form action="cart.php">
+                <form action="CartPage.php">
                     <input type="submit" name="cart" value="Shopping Cart">
                 </form>
                 
-                <form action="HomePage.php">
+                <form action="index.php">
                     <input type="submit" value="Back to home">
                 </form>
             </div>
             
             <div class="textDiv">
                 <?php
-                    include 'database.php';
-                    
-                    $conn = getDatabaseConnection("heroku_34a8e5c8c0df63e");
-                    
+                
                     $sql = "SELECT * FROM console WHERE 1";
                     
                     if(isset($_GET['submit']))
@@ -102,50 +132,16 @@
                         $sql .=  " AND console_title LIKE :productName";
                         $namedParameters[":productName"] = "%" . $_GET['product'] . "%";
                     }
-                    
-                    
-                    //echo $sql;
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute($namedParameters);
-                    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
+                   
                     echo "<div id='tb'>";
                     echo "<table>";
                     echo "<tr>";
-                    echo "<th>Image</th>";
+                    $items = getProducts("console", $sql);
+                    displayResults("console");
+                    
                     echo "</tr>";
                     
-                    foreach($records as $record) 
-                    {
-                        echo "<tr>";
-                        echo "<td> <img src='" . $record['console_image'] . "' width='200' height='300' alt='" . $record['console_title'] . "'/></td>";
-                        echo "<td><button class='accordion' >". $record['console_title']  . "</button>";
-                        echo "<div class='panel'>";
-                        
-                        echo "<h4>Summary:</h4>";
-                        echo "<p id='description'>";
-                        echo $record['console_description'];
-                        echo "</br >";
-                        echo "<h4>Genre:</h4>";
-                        echo $record['console_genre'];
-                        echo "</br >";
-                        echo "<h4>Rating:</h4>";
-                        echo $record['console_rating'];
-                        echo "</div>";
-                        
-                        echo "<h4>Price:</h4>";
-                        echo $record['console_price'];
-                        echo "<h4>Platform(s):</h4>";
-                        echo $record['console_platform'];
-                        
-                        echo "</p>";
-                        echo "<form>";
-                        
-                            echo "<input type='submit' value='Add to Cart'/>";
-                        echo "</form>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
+                    
                     echo "</table>";
                 ?>
                 

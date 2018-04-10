@@ -1,3 +1,37 @@
+<?php
+    
+    session_start();
+    
+    include 'functions.php';
+    include 'database.php';
+    
+    if(isset($_POST['itemName'])) {
+        
+        $newItem = array();
+        $newItem['name'] = $_POST['itemName'];
+        $newItem['id'] = $_POST['itemId'];
+        $newItem['price'] = $_POST['itemPrice'];
+        $newItem['image'] = $_POST['itemImage'];
+        
+        foreach($_SESSION['cart'] as &$item) {
+            
+            if($newItem['id'] == $item['id']) {
+                
+                $item['quantity'] += 1;
+                $found = true;
+            }
+        }
+        
+        if($found != true) {
+            
+            $newItem['quantity'] = 1;
+            array_push($_SESSION['cart'], $newItem);
+        }
+        
+    }
+
+
+?>
 <html>
     <head>
        <style>
@@ -11,7 +45,7 @@
             <div class="formDiv">
                 <h3>Search by:</h3>
                 <form >
-                    Title: <input type="text" name="title" placeholder="Enter game title here" /><br/><br/>
+                    Title: <input type="text" name="title" placeholder="Enter game title" /><br/><br/>
                     <select id="dropdown" name="filter">
                         <option value="">Filter by...</option>
                         <option value="pc_title">Title</option>
@@ -36,16 +70,13 @@
                     <input type="submit" name="cart" value="Shopping Cart">
                 </form>
                 
-                <form action="HomePage.php">
+                <form action="index.php">
                     <input type="submit" value="Back to home">
                 </form>
             </div>
             
             <div class="textDiv">
                 <?php
-                    include 'database.php';
-                    
-                    $conn = getDatabaseConnection("heroku_34a8e5c8c0df63e");
                     
                     $sql = "SELECT * FROM pc WHERE 1";
                     
@@ -84,41 +115,16 @@
                         $sql .= " ORDER BY pc_title";
                     }
                     
-                    
-                    
-                    //echo $sql;
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute();
-                    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
                     echo "<div id='tb3'>";
-                    echo "<table>";
+                    echo "<table id='fixed'>";
                     echo "<tr>";
-                    echo "<th>Image</th>";
+                    
+                    $items = getProducts("pc", $sql);
+                    displayResults("pc");
+                    
                     echo "</tr>";
                     
-                    foreach($records as $record) 
-                    {
-                        echo "<tr>";
-                        echo "<td> <img src='" . $record['pc_image'] . "' width='200' height='300' alt='" . $record['pc_title'] . "'/></td>";
-                        echo "<td><button class='accordion' >". $record['pc_title']  . "</button>";
-                        echo "<div class='panel'>";
-                        
-                        echo "<h4>Summary:</h4>";
-                        echo "<p id='description'>";
-                        echo $record['pc_description'];
-                        echo "</br >";
-                        echo "<h4>Genre:</h4>";
-                        echo $record['pc_genre'];
-                        echo "</br >";
-                        echo "<h4>Price:</h4>";
-                        echo $record['pc_price'];
-                        echo "</p>";
-                        
-                        echo "</div>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
+                    
                     echo "</table>";
                     
                 ?>
