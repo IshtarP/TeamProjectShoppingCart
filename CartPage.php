@@ -48,7 +48,7 @@
             <div class='text-center'>
                 
                 <!-- Bootstrap Navagation Bar -->
-                <nav class='navbar navbar-default - navbar-fixed-top'>
+                <nav class='navbar navbar-inverse - navbar-fixed-top'>
                     <div class='container-fluid'>
                         <div class='navbar-header'>
                             <a class='navbar-brand' href='#'>Shopping Land</a>

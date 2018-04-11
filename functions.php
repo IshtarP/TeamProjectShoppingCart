@@ -55,10 +55,10 @@
                 
                 if($_POST['itemId'] == $itemId) {
                     
-                    echo "<td><button class='btn btn-warning'>Added</button></td>";
+                    echo "<td><button id='buttonAdded' class='btn btn-warning'>Added</button></td>";
                 }
                 else {
-                    echo "<td><button class='btn btn-warning' >Add</button></td>";
+                    echo "<td><button id='buttonAdd' class='btn btn-warning' >Add</button></td>";
                 }
                 
                 echo "</form>";

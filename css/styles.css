@@ -121,3 +121,11 @@ th {
     display: none;
     overflow: hidden;
 }
+
+#buttonAdd {
+    background-color: orange;
+}
+
+#buttonAdded {
+    background-color: green;
+}
